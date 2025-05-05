@@ -5,6 +5,7 @@ const END_POINTS = {
   login: `${API_PREFIX}/auth/login`,
   me: `${API_PREFIX}/auth/me`,
   register: `${API_PREFIX}/auth/register`,
+  hello: `${API_PREFIX}/mock/hello`,
 };
 
 const AUTH_REDUCER_TYPES = {
