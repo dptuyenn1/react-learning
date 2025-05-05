@@ -1,6 +1,6 @@
-import { authAPI } from "@/configs/axios";
-import { AUTH_REDUCER_TYPES, END_POINTS } from "@/helpers/constants";
+import { AUTH_REDUCER_TYPES } from "@/helpers/constants";
 import useAuth from "@/hooks/useAuth";
+import { mockService } from "@/services";
 import { useEffect, useState } from "react";
 import { Button, Toast, ToastContainer } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -26,7 +26,7 @@ function Home() {
   const [message, setMessage] = useState("");
 
   async function handleFetchAPI() {
-    const response = await authAPI().get(END_POINTS["hello"]);
+    const response = await mockService.hello();
 
     setMessage(response);
     setShowToast(true);

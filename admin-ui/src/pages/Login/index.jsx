@@ -3,10 +3,10 @@ import { Toast, ToastContainer } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { isEmpty } from "@/helpers/utils";
-import axios, { authAPI } from "@/configs/axios";
-import { AUTH_REDUCER_TYPES, END_POINTS } from "@/helpers/constants";
+import { AUTH_REDUCER_TYPES } from "@/helpers/constants";
 import { useNavigate } from "react-router-dom";
 import useAuth from "@/hooks/useAuth";
+import { authService } from "@/services";
 
 function Login() {
   const [user, dispatch] = useAuth();
@@ -45,7 +45,7 @@ function Login() {
     }
 
     try {
-      let response = await axios.post(END_POINTS["login"], loginRequest);
+      let response = await authService.login(loginRequest);
 
       const {
         data: { accessToken },
@@ -53,7 +53,7 @@ function Login() {
 
       localStorage.setItem("accessToken", accessToken);
 
-      response = await authAPI().get(END_POINTS["me"]);
+      response = await authService.me();
 
       const { data: user } = response;
 
