@@ -107,21 +107,21 @@ function Login() {
             </div>
           </Form>
         </div>
-
-        <ToastContainer position="top-end" className="mt-3 me-3">
-          <Toast
-            onClose={() => setShowToast(false)}
-            show={showToast}
-            delay={3000}
-            autohide
-          >
-            <Toast.Header>
-              <strong className="me-auto text-danger">Error</strong>
-            </Toast.Header>
-            <Toast.Body>{error}</Toast.Body>
-          </Toast>
-        </ToastContainer>
       </section>
+
+      <ToastContainer position="top-end" className="mt-3 me-3">
+        <Toast
+          onClose={() => setShowToast(false)}
+          show={showToast}
+          delay={3000}
+          autohide
+        >
+          <Toast.Header>
+            <strong className="me-auto text-danger">Error</strong>
+          </Toast.Header>
+          <Toast.Body>{error}</Toast.Body>
+        </Toast>
+      </ToastContainer>
     </main>
   );
 }
