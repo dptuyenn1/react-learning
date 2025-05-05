@@ -1,17 +1,22 @@
+import { BASE_URL } from "@/helpers/constants";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 const instance = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: BASE_URL,
 });
 
-const accessToken = Cookies.get("accessToken");
-
-instance.interceptors.response.use(function (response) {
-  return response.data;
-});
+instance.interceptors.response.use(
+  function (response) {
+    return response.data;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
 
 function authAPI() {
+  const accessToken = localStorage.getItem("accessToken");
+
   instance.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
 
   return instance;
