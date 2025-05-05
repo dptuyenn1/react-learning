@@ -1,7 +1,15 @@
+const BASE_URL = "http://localhost:8080";
+const API_PREFIX = "/api";
+
 const END_POINTS = {
-  login: "/api/auth/login",
-  me: "/api/auth/me",
-  register: "/api/auth/register",
+  login: `${API_PREFIX}/auth/login`,
+  me: `${API_PREFIX}/auth/me`,
+  register: `${API_PREFIX}/auth/register`,
 };
 
-export { END_POINTS };
+const AUTH_REDUCER_TYPES = {
+  login: "TYPE_LOGIN",
+  logout: "TYPE_LOGOUT",
+};
+
+export { BASE_URL, END_POINTS, AUTH_REDUCER_TYPES };
