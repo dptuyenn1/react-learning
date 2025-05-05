@@ -1,7 +1,7 @@
 const END_POINTS = {
-  login: "/auth/login",
-  register: "/auth/register",
-  me: "/auth/login",
+  login: "/api/auth/login",
+  me: "/api/auth/me",
+  register: "/api/auth/register",
 };
 
 export { END_POINTS };
