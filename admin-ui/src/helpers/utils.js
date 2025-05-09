@@ -1,7 +1,7 @@
 function isEmpty(object) {
-  return Object.values(object).every(
-    (property) => property === null || property === ""
-  );
+  return Object.values(object).every(function (property) {
+    return property === null || property === "";
+  });
 }
 
 export { isEmpty };

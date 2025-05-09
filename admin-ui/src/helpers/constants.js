@@ -1,5 +1,5 @@
 const BASE_URL = "http://localhost:8080";
-const API_PREFIX = "/api";
+const API_PREFIX = "/api/v1";
 
 const END_POINTS = {
   login: `${API_PREFIX}/auth/login`,
