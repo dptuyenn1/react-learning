@@ -80,7 +80,6 @@ function Login() {
                 onChange={handleInputChange}
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -90,7 +89,7 @@ function Login() {
                 onChange={handleInputChange}
               />
             </Form.Group>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center mb-3">
               <Button
                 variant="primary"
                 type="button"
@@ -100,10 +99,17 @@ function Login() {
                 Login
               </Button>
             </div>
+            <Button
+              variant="warning"
+              type="button"
+              className="w-100"
+              onClick={() => navigate("/register")}
+            >
+              Don't have an account yet? Register now!
+            </Button>
           </Form>
         </div>
       </section>
-
       <ToastContainer />
     </main>
   );

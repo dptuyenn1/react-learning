@@ -13,4 +13,10 @@ async function me() {
   return response;
 }
 
-export { login, me };
+async function register(registerRequest) {
+  const response = await axios.post(END_POINTS["register"], registerRequest);
+
+  return response;
+}
+
+export { login, me, register };
