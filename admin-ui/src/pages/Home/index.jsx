@@ -1,9 +1,10 @@
 import { AUTH_REDUCER_TYPES } from "~/helpers/constants";
 import useAuth from "~/hooks/useAuth";
 import { mockService } from "~/services";
-import { useEffect, useState } from "react";
-import { Button, Toast, ToastContainer } from "react-bootstrap";
+import { useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 function Home() {
   let [user, dispatch] = useAuth();
@@ -22,14 +23,10 @@ function Home() {
     });
   }
 
-  const [showToast, setShowToast] = useState(false);
-  const [message, setMessage] = useState("");
-
   async function handleFetchAPI() {
     const response = await mockService.hello();
 
-    setMessage(response);
-    setShowToast(true);
+    toast.info(response);
   }
 
   return (
@@ -49,19 +46,7 @@ function Home() {
         </div>
       </section>
 
-      <ToastContainer position="top-end" className="mt-3 me-3">
-        <Toast
-          onClose={() => setShowToast(false)}
-          show={showToast}
-          delay={3000}
-          autohide
-        >
-          <Toast.Header>
-            <strong className="me-auto text-success">Message</strong>
-          </Toast.Header>
-          <Toast.Body>{message}</Toast.Body>
-        </Toast>
-      </ToastContainer>
+      <ToastContainer />
     </main>
   );
 }

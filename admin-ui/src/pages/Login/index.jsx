@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Toast, ToastContainer } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { isEmpty } from "~/helpers/utils";
@@ -7,6 +6,7 @@ import { AUTH_REDUCER_TYPES } from "~/helpers/constants";
 import { useNavigate } from "react-router-dom";
 import useAuth from "~/hooks/useAuth";
 import { authService } from "~/services";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const [user, dispatch] = useAuth();
@@ -15,9 +15,6 @@ function Login() {
     username: "",
     password: "",
   });
-
-  const [showToast, setShowToast] = useState(false);
-  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -38,8 +35,7 @@ function Login() {
 
   async function handleLogin() {
     if (isEmpty(loginRequest)) {
-      setError("Please fill in all fields!");
-      setShowToast(true);
+      toast.warn("Please fill in all fields!");
 
       return;
     }
@@ -64,8 +60,7 @@ function Login() {
         payload: user,
       });
     } catch (error) {
-      setError(error.response?.data?.message || error.message);
-      setShowToast(true);
+      toast.error(error.response?.data?.message || error.message);
     }
   }
 
@@ -109,19 +104,7 @@ function Login() {
         </div>
       </section>
 
-      <ToastContainer position="top-end" className="mt-3 me-3">
-        <Toast
-          onClose={() => setShowToast(false)}
-          show={showToast}
-          delay={3000}
-          autohide
-        >
-          <Toast.Header>
-            <strong className="me-auto text-danger">Error</strong>
-          </Toast.Header>
-          <Toast.Body>{error}</Toast.Body>
-        </Toast>
-      </ToastContainer>
+      <ToastContainer />
     </main>
   );
 }
