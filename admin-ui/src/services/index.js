@@ -1,4 +1,4 @@
-import * as mockService from "./mock/service";
 import * as authService from "./auth/service";
+import * as mockService from "./mock/service";
 
-export { mockService, authService };
+export { authService, mockService };

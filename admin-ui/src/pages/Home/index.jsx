@@ -1,10 +1,10 @@
-import { AUTH_REDUCER_TYPES } from "~/helpers/constants";
-import useAuth from "~/hooks/useAuth";
-import { mockService } from "~/services";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import { AUTH_REDUCER_TYPES } from "~/helpers/constants";
+import useAuth from "~/hooks/useAuth";
+import { mockService } from "~/services";
 
 function Home() {
   let [user, dispatch] = useAuth();
