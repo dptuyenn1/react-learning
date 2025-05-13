@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Toast, ToastContainer } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { isEmpty } from "@/helpers/utils";
-import { AUTH_REDUCER_TYPES } from "@/helpers/constants";
+import { isEmpty } from "~/helpers/utils";
+import { AUTH_REDUCER_TYPES } from "~/helpers/constants";
 import { useNavigate } from "react-router-dom";
-import useAuth from "@/hooks/useAuth";
-import { authService } from "@/services";
+import useAuth from "~/hooks/useAuth";
+import { authService } from "~/services";
 
 function Login() {
   const [user, dispatch] = useAuth();

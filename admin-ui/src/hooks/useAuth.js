@@ -1,4 +1,4 @@
-import { AuthContext } from "@/store";
+import { AuthContext } from "~/store";
 import { useContext } from "react";
 
 function useAuth() {

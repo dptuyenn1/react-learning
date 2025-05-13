@@ -1,6 +1,6 @@
-import { AUTH_REDUCER_TYPES } from "@/helpers/constants";
-import useAuth from "@/hooks/useAuth";
-import { mockService } from "@/services";
+import { AUTH_REDUCER_TYPES } from "~/helpers/constants";
+import useAuth from "~/hooks/useAuth";
+import { mockService } from "~/services";
 import { useEffect, useState } from "react";
 import { Button, Toast, ToastContainer } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";

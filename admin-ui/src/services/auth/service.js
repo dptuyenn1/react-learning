@@ -1,5 +1,5 @@
-import axios, { authAPI } from "@/configs/axios";
-import { END_POINTS } from "@/helpers/constants";
+import axios, { authAPI } from "~/configs/axios";
+import { END_POINTS } from "~/helpers/constants";
 
 async function login(loginRequest) {
   const response = await axios.post(END_POINTS["login"], loginRequest);

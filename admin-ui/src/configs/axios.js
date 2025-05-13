@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/helpers/constants";
+import { BASE_URL } from "~/helpers/constants";
 import axios from "axios";
 
 const instance = axios.create({
