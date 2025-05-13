@@ -1,4 +1,4 @@
-import Context from "./auth/Context";
-import Provider from "./auth/Provider";
+import { default as AuthContext } from "./auth/Context";
+import { default as AuthProvider } from "./auth/Provider";
 
-export { Context as AuthContext, Provider as AuthProvider };
+export { AuthContext, AuthProvider };
