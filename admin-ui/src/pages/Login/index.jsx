@@ -60,7 +60,12 @@ function Login() {
         payload: user,
       });
     } catch (error) {
-      toast.error(error.response?.data?.message || error.message);
+      const message = error.response?.data?.message || error.message;
+
+      if (typeof message === "object")
+        for (const [key, value] of Object.entries(message))
+          toast.error(`${key}: ${value}`);
+      else toast.error(message);
     }
   }
 
