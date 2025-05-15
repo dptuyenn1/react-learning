@@ -32,7 +32,7 @@ function Register() {
     const field = event.target.name;
     const value = event.target.value;
 
-    setRegisterRequest((prev) => {
+    setRegisterRequest(function (prev) {
       return { ...prev, [field]: value };
     });
   }
@@ -57,7 +57,7 @@ function Register() {
   }
 
   function handleRoleChange(roles) {
-    setRegisterRequest((prev) => {
+    setRegisterRequest(function (prev) {
       return { ...prev, roles: roles.map((role) => role.value) };
     });
   }
@@ -137,6 +137,7 @@ function Register() {
           </Form>
         </div>
       </section>
+
       <ToastContainer />
     </main>
   );

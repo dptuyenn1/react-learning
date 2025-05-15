@@ -28,7 +28,7 @@ function Login() {
     const field = event.target.name;
     const value = event.target.value;
 
-    setLoginRequest((prev) => {
+    setLoginRequest(function (prev) {
       return { ...prev, [field]: value };
     });
   }
@@ -110,6 +110,7 @@ function Login() {
           </Form>
         </div>
       </section>
+
       <ToastContainer />
     </main>
   );
