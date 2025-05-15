@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { ToastContainer, toast } from "react-toastify";
 import { ROLES } from "~/helpers/constants";
-import { isEmpty } from "~/helpers/utils";
+import { handleValidationMessage, isEmpty } from "~/helpers/utils";
 import useAuth from "~/hooks/useAuth";
 import { authService } from "~/services";
 
@@ -52,12 +52,7 @@ function Register() {
 
       navigate("/login");
     } catch (error) {
-      const message = error.response?.data?.message || error.message;
-
-      if (typeof message === "object")
-        for (const [key, value] of Object.entries(message))
-          toast.error(`${key}: ${value}`);
-      else toast.error(message);
+      handleValidationMessage(error);
     }
   }
 

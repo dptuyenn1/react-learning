@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { AUTH_REDUCER_TYPES } from "~/helpers/constants";
-import { isEmpty } from "~/helpers/utils";
+import { handleValidationMessage, isEmpty } from "~/helpers/utils";
 import useAuth from "~/hooks/useAuth";
 import { authService } from "~/services";
 
@@ -60,12 +60,7 @@ function Login() {
         payload: user,
       });
     } catch (error) {
-      const message = error.response?.data?.message || error.message;
-
-      if (typeof message === "object")
-        for (const [key, value] of Object.entries(message))
-          toast.error(`${key}: ${value}`);
-      else toast.error(message);
+      handleValidationMessage(error);
     }
   }
 
