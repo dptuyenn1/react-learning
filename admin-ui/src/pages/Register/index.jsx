@@ -12,11 +12,12 @@ import { authService } from "~/services";
 function Register() {
   const [user] = useAuth();
 
-  const [registerRequest, setRegisterRequest] = useState({
+  const [request, setRequest] = useState({
     firstName: "",
     lastName: "",
     username: "",
     password: "",
+    confirm: "",
     roles: [],
   });
 
@@ -32,14 +33,14 @@ function Register() {
     const field = event.target.name;
     const value = event.target.value;
 
-    setRegisterRequest(function (prev) {
+    setRequest(function (prev) {
       return { ...prev, [field]: value };
     });
   }
 
   async function handleRegister() {
     // eslint-disable-next-line no-unused-vars
-    const { roles, ...rest } = registerRequest;
+    const { roles, ...rest } = request;
 
     if (isEmpty(rest)) {
       toast.warn("Please fill in all fields!");
@@ -47,17 +48,27 @@ function Register() {
       return;
     }
 
-    try {
-      await authService.register(registerRequest);
+    if (request.password !== request.confirm) {
+      toast.error("Password must match!");
 
-      navigate("/login");
+      return;
+    }
+
+    try {
+      const response = await authService.register(request);
+
+      await toast.success(response.message);
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
       handleValidationMessage(error);
     }
   }
 
   function handleRoleChange(roles) {
-    setRegisterRequest(function (prev) {
+    setRequest(function (prev) {
       return { ...prev, roles: roles.map((role) => role.value) };
     });
   }
@@ -100,8 +111,17 @@ function Register() {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="Enter password"
                 name="password"
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Confirm password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter password again"
+                name="confirm"
                 onChange={handleInputChange}
               />
             </Form.Group>
