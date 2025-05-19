@@ -11,7 +11,7 @@ import { authService } from "~/services";
 function Login() {
   const [user, dispatch] = useAuth();
 
-  const [loginRequest, setLoginRequest] = useState({
+  const [request, setRequest] = useState({
     username: "",
     password: "",
   });
@@ -28,20 +28,20 @@ function Login() {
     const field = event.target.name;
     const value = event.target.value;
 
-    setLoginRequest(function (prev) {
+    setRequest(function (prev) {
       return { ...prev, [field]: value };
     });
   }
 
   async function handleLogin() {
-    if (isEmpty(loginRequest)) {
+    if (isEmpty(request)) {
       toast.warn("Please fill in all fields!");
 
       return;
     }
 
     try {
-      let response = await authService.login(loginRequest);
+      let response = await authService.login(request);
 
       const {
         data: { accessToken },
@@ -84,7 +84,7 @@ function Login() {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder="Enter password"
                 name="password"
                 onChange={handleInputChange}
               />
