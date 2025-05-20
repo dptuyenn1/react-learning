@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { AUTH_REDUCER_TYPES } from "~/helpers/constants";
+import { handleValidationMessage } from "~/helpers/utils";
 import useAuth from "~/hooks/useAuth";
 import { mockService } from "~/services";
 
@@ -24,9 +25,13 @@ function Home() {
   }
 
   async function handleFetchAPI() {
-    const response = await mockService.hello();
+    try {
+      const response = await mockService.hello();
 
-    toast.info(response);
+      toast.info(response);
+    } catch (error) {
+      handleValidationMessage(error);
+    }
   }
 
   return (
