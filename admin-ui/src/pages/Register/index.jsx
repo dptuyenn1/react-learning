@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-import Select from "react-select";
 import { ToastContainer, toast } from "react-toastify";
-import { ROLES } from "~/helpers/constants";
 import { handleValidationMessage, isEmpty } from "~/helpers/utils";
 import useAuth from "~/hooks/useAuth";
 import { authService } from "~/services";
@@ -18,7 +16,6 @@ function Register() {
     username: "",
     password: "",
     confirm: "",
-    roles: [],
   });
 
   const navigate = useNavigate();
@@ -39,10 +36,7 @@ function Register() {
   }
 
   async function handleRegister() {
-    // eslint-disable-next-line no-unused-vars
-    const { roles, ...rest } = request;
-
-    if (isEmpty(rest)) {
+    if (isEmpty(request)) {
       toast.warn("Please fill in all fields!");
 
       return;
@@ -61,16 +55,10 @@ function Register() {
 
       setTimeout(() => {
         navigate("/login");
-      }, 2000);
+      }, 3000);
     } catch (error) {
       handleValidationMessage(error);
     }
-  }
-
-  function handleRoleChange(roles) {
-    setRequest(function (prev) {
-      return { ...prev, roles: roles.map((role) => role.value) };
-    });
   }
 
   return (
@@ -123,17 +111,6 @@ function Register() {
                 placeholder="Enter password again"
                 name="confirm"
                 onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3">
-              <Form.Label>Roles</Form.Label>
-              <Select
-                defaultValue={ROLES[0]}
-                isMulti
-                options={ROLES}
-                className="basic-multi-select"
-                classNamePrefix="select"
-                onChange={handleRoleChange}
               />
             </Form.Group>
             <div className="d-flex justify-content-center mb-3">

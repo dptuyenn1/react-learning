@@ -13,10 +13,4 @@ const AUTH_REDUCER_TYPES = {
   logout: "TYPE_LOGOUT",
 };
 
-const ROLES = [
-  { value: "ROLE_USER", label: "USER" },
-  { value: "ROLE_ADMIN", label: "ADMIN" },
-  { value: "ROLE_SUPER_ADMIN", label: "SUPER_ADMIN" },
-];
-
-export { AUTH_REDUCER_TYPES, BASE_URL, END_POINTS, ROLES };
+export { AUTH_REDUCER_TYPES, BASE_URL, END_POINTS };
