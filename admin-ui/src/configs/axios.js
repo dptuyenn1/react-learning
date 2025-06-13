@@ -5,6 +5,19 @@ const instance = axios.create({
   baseURL: BASE_URL,
 });
 
+instance.interceptors.request.use(
+  function (config) {
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;
+
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
 instance.interceptors.response.use(
   function (response) {
     return response.data;
@@ -14,13 +27,4 @@ instance.interceptors.response.use(
   }
 );
 
-function authAPI() {
-  const accessToken = localStorage.getItem("accessToken");
-
-  instance.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-
-  return instance;
-}
-
 export default instance;
-export { authAPI };
