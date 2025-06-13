@@ -28,7 +28,7 @@ function Home() {
     try {
       const response = await mockService.hello();
 
-      toast.info(response);
+      toast.info(response.message);
     } catch (error) {
       handleValidationMessage(error);
     }
