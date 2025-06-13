@@ -1,5 +1,5 @@
-const BASE_URL = "http://localhost:8080";
-const API_PREFIX = "/api/v1";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_PREFIX = import.meta.env.VITE_API_PREFIX;
 
 const END_POINTS = {
   login: `${API_PREFIX}/auth/login`,
